@@ -14,6 +14,9 @@ app.use(bodyParser.urlencoded({
 app.use(logger);
 
 app.get('/:entity', genericEntity.action(genericEntity._select));
+app.post('/:entity', genericEntity.action(genericEntity._create));
+app.put('/:entity', genericEntity.action(genericEntity._update));
+app.delete('/:entity', genericEntity.action(genericEntity._delete));
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

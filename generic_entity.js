@@ -60,5 +60,5 @@ const _delete = (param) =>
 };
 
 module.exports = {
-    action, _select
+    action, _select, _create, _update, _delete
 };
