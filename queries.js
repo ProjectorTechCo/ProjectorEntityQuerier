@@ -1,5 +1,14 @@
 const schemaConfig = require('./schemaConfig');
 
+const getQuery = (entity, params) => {
+    let query = `SELECT * FROM comp_${entity}`;
+    if (params && Object.keys(params).length > 0) {
+        query += ` WHERE ${Object.keys(params).map(field => `${field} = '${params[field]}'`).join(' AND ')}`;
+    }
+
+    return query;
+};
+
 const getFullTextQuery = (entity, text, operator="and") => {
     return `SELECT * FROM ${entity} WHERE to_tsvector('simple', ` +
     `${getColumnsConcat(entity, Object.keys(schemaConfig[entity]))}) @@ to_tsquery('simple', ` +
@@ -23,5 +32,5 @@ const getParsedSearchText = (text, opertor) => {
 };
 
 module.exports = {
-    getFullTextQuery
+    getFullTextQuery, getQuery
 };

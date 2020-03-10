@@ -1,7 +1,7 @@
 const PgInstance = require("./PgInstance");
 const queries = require("./queries");
 
-const ENTITIES = ["projects"];
+const ENTITIES = ["projects", "buildings"];
 
 const action = (callback) => {
     return (req, res) => {
@@ -11,10 +11,11 @@ const action = (callback) => {
         else
             callback(entity, req, res);
     }
-}
+};
 
 const _select = (entity, req, res) => {
-    PgInstance.action(`SELECT * FROM comp_${entity}`).then(result => {
+    const query = queries.getQuery(entity, req.query);
+    PgInstance.action(query).then(result => {
             let {status, message} = result;
             res.status(status).json(message);
         }
