@@ -21,7 +21,7 @@ const _select = (entity, req, res) => {
         }
     ).catch(e => {
         console.log(e);
-        res.status(500).send("Server error");
+        res.status(500).send(e.message);
     });
 };
 
