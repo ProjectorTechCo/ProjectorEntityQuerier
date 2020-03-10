@@ -1,7 +1,7 @@
 const PgInstance = require("./PgInstance");
 const queries = require("./queries");
 
-const ENTITIES = ["projects", "buildings"];
+const ENTITIES = ["projects", "buildings", "apps", "entrepreneurs", "contractors", "resources"];
 
 const action = (callback) => {
     return (req, res) => {
