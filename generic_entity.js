@@ -25,23 +25,6 @@ const _select = (entity, req, res) => {
     });
 };
 
-const selectAll = (param) => {
-    return (req, res) => {
-        let argument = req.params[param];
-        let query = `SELECT * FROM ${this.entity}`;
-        if (argument)
-            query += ` WHERE ${param} = ${argument}`;
-        PgInstance.action(query).then(result => {
-                let {status, message} = result;
-                res.status(status).json(message);
-            }
-        ).catch(e => {
-            console.log(e);
-        });
-    }
-};
-
-const _selectByCondition = (entity, req, res) => {};
 const _create = (entity, req, res) => {};
 const _update = () => {};
 
