@@ -38,8 +38,8 @@ const _delete = (param) =>
             }
         ).catch(e => {
             console.log(e);
+            res.status(400).send(e.message)
         });
-        res.status(200).json({})
     }
 };
 

@@ -1,10 +1,11 @@
 const { Pool } = require("pg");
-const pgConfig = require('./config').postgres;
+const config = require('./config');
 
 class PgInstance {
     static async action(query, params=[]) {
         try {
-            let pool = new Pool(pgConfig);
+            let currentConfig = await config.getConfig();
+            let pool = new Pool(currentConfig.postgres);
             let queryResult = (await pool.query(query, params));
             let result = queryResult.insertId ? queryResult.insertId : queryResult.rows;
             return { status: 200, message: result };
